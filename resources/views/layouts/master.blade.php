@@ -78,27 +78,27 @@
     <!-- All Jquery -->
     <!-- ============================================================== -->
     
-    <script src="{{asset('/assets/plugins/jquery/jquery.min.js')}}"></script>
+    <script src="{{asset('/assets/plugins/jquery/jquery.min.js',true)}}"></script>
     <script src="{{asset('/js/app.js')}}"> </script>
     <!-- Bootstrap tether Core JavaScript -->
 
 
     <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="{{asset('assets/js/jquery.slimscroll.js')}}"></script>
+    <script src="{{asset('assets/js/jquery.slimscroll.js' ,true)}}"></script>
     <!--Wave Effects -->
-    <script src="{{asset('assets/js/waves.js')}}"></script>
+    <script src="{{asset('assets/js/waves.js',true)}}"></script>
     <!--Menu sidebar -->
-    <script src="{{asset('assets/js/sidebarmenu.js')}}"></script>
+    <script src="{{asset('assets/js/sidebarmenu.js',true)}}"></script>
     <!--stickey kit -->
-    <script src="{{asset('assets/plugins/sticky-kit-master/dist/sticky-kit.min.js')}}"></script>
-    <script src="{{asset('assets/plugins/sparkline/jquery.sparkline.min.js')}}"></script>
-    <script src="{{asset('assets/plugins/calendar/jquery-ui.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/sticky-kit-master/dist/sticky-kit.min.js',true)}}"></script>
+    <script src="{{asset('assets/plugins/sparkline/jquery.sparkline.min.js',true)}}"></script>
+    <script src="{{asset('assets/plugins/calendar/jquery-ui.min.js',true)}}"></script>
     <script src="{{asset('assets/plugins/moment/moment.js')}}"></script>
-    <script src="{{asset('assets/plugins/calendar/dist/fullcalendar.min.js')}}"></script>
-    <script src="{{asset('assets/plugins/calendar/dist/cal-init.js')}}"></script>
+    <script src="{{asset('assets/plugins/calendar/dist/fullcalendar.min.js',true)}}"></script>
+    <script src="{{asset('assets/plugins/calendar/dist/cal-init.js',true)}}"></script>
 
     <!--Custom JavaScript -->
-    <script src="{{asset('assets/js/custom.min.js')}}"></script>
+    <script src="{{asset('assets/js/custom.min.js',true)}}"></script>
     <!-- ============================================================== -->
     <!-- Style switcher -->
     <!-- ============================================================== -->
