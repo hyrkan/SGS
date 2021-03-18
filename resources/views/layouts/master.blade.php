@@ -79,7 +79,7 @@
     <!-- ============================================================== -->
     
     <script src="{{asset('/assets/plugins/jquery/jquery.min.js',true)}}"></script>
-    <script src="{{asset('/js/app.js')}}"> </script>
+    <script src="{{asset('/js/app.js',true)}}"> </script>
     <!-- Bootstrap tether Core JavaScript -->
 
 
