@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -23,4 +25,6 @@ Route::resource('/staff_management', 'RegisterController');
 Route::get('/seed_management', 'SeedController@index');
 Route::get('/seedbed_management', 'SeedbedController@index');
 Route::get('/plot_management', 'PlotController@index');
-
+Route::get( '/{any}', function(){
+    return view( 'home' );
+} )->where('any', '.*');

@@ -50,3 +50,10 @@ Route::prefix('/staff_management')->group(function(){
     Route::get('/{staff}', 'RegisterController@update');
     Route::delete('/{staff}', 'RegisterController@destroy');
 });
+
+
+Route::get('/fetch_seeds', 'SeedSowingController@getSeed');
+Route::get('/fetch_seedbed', 'SeedSowingController@getSeedbed');
+Route::post('/seed_sowing','SeedSowingController@seed_sowing');
+Route::get('/fetch_sowings','SeedSowingController@index');
+

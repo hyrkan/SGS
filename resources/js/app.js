@@ -1,7 +1,14 @@
 
 
 require('./bootstrap');
+import Vue from 'vue';
 import Swal from 'sweetalert2'
+import VueRouter from 'vue-router';
+import routes from './routes';
+
+
+
+Vue.use(VueRouter)
 window.Vue = require('vue');
 window.swal = Swal;
 
@@ -34,4 +41,5 @@ Vue.component('plot-component', require('./components/PlotComponent.vue').defaul
 
 const app = new Vue({
     el: '#app',
+    router: new VueRouter(routes),
 });
