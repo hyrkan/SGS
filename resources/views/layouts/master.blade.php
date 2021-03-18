@@ -20,7 +20,7 @@
 
     <link href="{{secure_asset('/assets/plugins/sweetalert/sweetalert.css')}}" rel="stylesheet" type="text/css">
     <!-- Custom CSS -->
-    <link href="{{assecure_asset('/assets/css/style.css')}}" rel="stylesheet">
+    <link href="{{secure_asset('/assets/css/style.css')}}" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="{{secure_asset('/assets/css/colors/default-dark.css')}}" id="theme" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
