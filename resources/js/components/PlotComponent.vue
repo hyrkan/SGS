@@ -34,7 +34,7 @@
             <div class="modal-dialog" role="document" >
                 <div class="modal-content">
                     <div class="modal-body">
-                         <form class="form p-t-20" @submit.prevent>
+                        <form class="form p-t-20" @submit.prevent>
                             <div class="form-group">
                                 <label for="seed_name" v-show="edit">Update Seedbed</label>
                                 <label for="seed_name" v-show="!edit">Register New Seedbed</label>
