@@ -15,7 +15,7 @@
 
     <div class="row" id="app">
         <div class="col-12">
-        <seed-component></seed-component>
+        <seed-component :user_id="{{Auth::user()->id}}"></seed-component>
         </div>
     </div>
 

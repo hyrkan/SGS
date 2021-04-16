@@ -12,7 +12,7 @@
 
     <div class="row" id="app">
         <div class="col-12">
-            <dashboard-component></dashboard-component>
+            <main-dashboard></main-dashboard>
         </div>
     </div>
 </div>

@@ -9,8 +9,6 @@
                             <tr>
                                 <th>Seed Name</th>
                                 <th>Variety</th>
-                                <th>Unit</th>
-                                <th>Cost/Unit</th>
                                 <th>In Stock</th>
                                 <th class="text-nowrap">Action</th>
                             </tr>
@@ -19,17 +17,27 @@
                             <tr v-for = "(seed,index) in seed_list" :key = "index">
                                 <td>{{seed.seed_name}}</td>
                                 <td>{{seed.variety}}</td>
-                                <td>{{seed.unit}}</td>
-                                <td>{{seed.cost}}</td>
                                 <td>{{seed.quantity}}</td>
                                 <td>
-                                    <button class="btn btn-outline-success"><i class="fa fa-plus"></i></button>
+                                    <button class="btn btn-outline-success" @click="addSeed(seed.id)"><i class="fa fa-plus"></i></button>
                                     <button class="btn btn-outline-primary" @click="editSeed(seed)"><i class="fa fa-edit"></i></button>
                                     <button class="btn btn-outline-danger" @click="deleteSeed(seed ,index)"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Seed Stock Modal Here -->
+        <div class="modal fade" id="add_seed_stock" tabindex="-1" role="dialog" aria-labelledby="add_seed_stock" aria-hidden="true" >
+            <div class="modal-dialog" role="document" >
+                <div class="modal-content">
+                    <div class="modal-body">
+
+                        
+                    </div>
                 </div>
             </div>
         </div>
@@ -51,8 +59,10 @@
                                             <i class="fas fa-seedling"></i>
                                         </span>
                                     </div>
-                                    <input type="text" class="form-control" id="seed_name" placeholder="Seed name" v-model="form.seed_name" required>
+                                    <input type="text" class="form-control" id="seed_name" placeholder="Seed name"
+                                     v-model="form.seed_name" >
                                 </div>
+                                <p class="alert alert-danger" v-show = "errors && errors.seed_name" >Seedname is required</p>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputuname">Variety</label>
@@ -64,21 +74,9 @@
                                     </div>
                                     <input type="text" class="form-control" id="exampleInputuname" placeholder="Variety" v-model="form.variety" required>
                                 </div>
+                                <p class="alert alert-danger" v-show = "errors && errors.variety" >Variety is required</p>
                             </div>
-                            <div class="form-group">
-                                <label for="exampleInputuname">Unit</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1">
-                                            <i class="fas fa-balance-scale"></i>
-                                        </span>
-                                    </div>
-                                    <select class="form-control custom-select" v-model="form.unit" required> 
-                                        <option selected>Pieces</option>
-                                        <option>Bags</option>
-                                    </select>
-                                </div>
-                            </div>
+                            
                             <div class="form-group" v-show="!edit">
                                 <label for="quantity">Quantity</label>
                                 <div class="input-group">
@@ -90,47 +88,45 @@
                                     <input type="number" class="form-control" id="quantity" placeholder="Quantity" v-model="form.quantity" required>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="cost">Cost</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text" id="cost">
-                                                    <i class="fas fa-money-bill-alt"></i>
-                                                </span>
-                                            </div>
-                                            <input type="number" class="form-control" id="cost" placeholder="Cost" v-model="form.cost" required>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="selling_price">Selling Price</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text" id="selling_price">
-                                                    <i class="far fa-money-bill-alt"></i>
-                                                </span>
-                                            </div>
-                                            <input type="number" class="form-control" id="selling_price" placeholder="Selling Price" v-model="form.selling_price" required>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
+                            <p class="alert alert-danger" v-show = "errors && errors.quantity" >Quantity is required</p> 
                             <div class="float-right">
                                 <button type="submit" class="btn btn-inverse waves-effect waves-light" @click="hideModal()">Cancel</button>
                                 <button type="submit" class="btn btn-success waves-effect waves-light m-r-10" v-show="!edit" @click="formSubmit()"> Submit</button>
                                 <button type="submit" class="btn btn-success waves-effect waves-light m-r-10" v-show="edit" @click="formUpdateSubmit()"> Save Changes</button>
                             </div>
                         </form>
-
-                        
                     </div>
                 </div>
             </div>
         </div>
+
+        <!--Add Quantity Modal -->
+        <div class="modal fade" id="seed_add_quantity" tabindex="-1" role="dialog" aria-labelledby="seed_add_quantity" aria-hidden="true" >
+            <div class="modal-dialog" role="document" >
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <form class="form p-t-20" @submit.prevent>
+                            <div class="form-group">
+                                <label for="quantity">Add Seed Quantity</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="quantity">
+                                            <i class="fas fa-flask"></i>
+                                        </span>
+                                    </div>
+                                    <input type="number" class="form-control" id="fertlizer_name" placeholder="add seed quantity" v-model="addQuantityform.quantity">
+                                </div>
+                            </div>
+                            <div class="float-right">
+                                <button type="submit" class="btn btn-inverse waves-effect waves-light" @click="hideAddSeedModal">Cancel</button>
+                                <button type="submit" class="btn btn-success waves-effect waves-light m-r-10" @click="submitSeedQuantity"> Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <button 
             class="right-side-toggle waves-effect  waves-light btn-success btn btn-circle btn-sm pull-right m-l-10" data-toggle="tooltip" title="Register New Seed" @click="changeMode" >
             <i class="ti-settings text-white"></i>
@@ -141,23 +137,26 @@
 <script>
     export default {
 
+        props: ['user_id'],
        
         //Declaration of data and fields
         data: function () {
             return {
                 edit: true,
+                seed_id : '',
                 seed_list : [],
 
                 form: {
                     seed_name: null,
                     variety : null,
-                    unit : 'Pieces',
                     quantity : null,
-                    cost: null,
-                    selling_price: null,
                 },
 
-                seed_id : '',
+                addQuantityform: {
+                    quantity : null,
+                },
+
+                errors : {}, 
             }
         },
 
@@ -183,8 +182,11 @@
                         this.hideModal();
                     }
 
-                }).catch (err => {
-                    console.log(err);
+                }).catch (error => {
+                    if(error.response.status == 422){
+                        this.errors = error.response.data.errors;
+                        console.log(this.errors);
+                    }
                 })
             },
 
@@ -196,6 +198,7 @@
                 }).catch(error => {
                     console.log(error);
                 })
+
             },
 
 
@@ -216,7 +219,7 @@
 
             //Submitting seed changes to the database
             formUpdateSubmit(){
-               axios.put(`api/seed_management/${this.seed_id}`,this.form)
+               axios.put(`api/seed_management/${this.seed_id}`, this.form)
                .then(response =>{
                    if(response.status == '200'){
                        toast.fire({
@@ -278,13 +281,53 @@
                 $('body').removeClass('modal-open');
                 $('.modal-backdrop').remove();
                 this.resetForm();
+               
+            },
+
+            showAddSeedModal(){
+                $('#seed_add_quantity').modal('show');
+            },
+
+            hideAddSeedModal(){
+                $('#seed_add_quantity').modal('hide');
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+                this.resetForm();
+               
+            },
+
+            addSeed(seed_id){
+                this.seed_id = seed_id;
+                this.showAddSeedModal();
+            },
+
+            submitSeedQuantity(){
+                axios.post('/api/add_seed_quantity' ,{
+                    quantity : this.addQuantityform.quantity,
+                    id : this.seed_id,
+                    user_id : this.user_id,
+                })
+                .then (response => {
+                    if (response.status  == '200'){
+                        toast.fire({
+                            icon: 'success',
+                            title: 'Quantity Added'
+                        })
+                        this.hideAddSeedModal();
+                        this.seedList();
+                    }
+                }).catch (err => {
+                    console.log(err);
+                })
             },
 
 
             //*
             resetForm(){
                 this.form = {};
-                this.form.unit = 'Pieces'
+                this.errors = {};
+                this.form.unit = 'Pieces';
+                this.addQuantityform = {};
             }
 
 

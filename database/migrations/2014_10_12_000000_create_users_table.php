@@ -17,12 +17,9 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('firstname');
             $table->string('lastname');
-            $table->string('middle_initial');
-            $table->string('gender');
+            $table->string('middlename');
+            $table->string('role');
             $table->string('phone_number');
-            $table->string('dob');
-            $table->string('email');
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('username');
             $table->string('password');
             $table->rememberToken();

@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Seed;
+use App\SeedStockIn;
+use App\ProductInventory;
+use App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 
 class SeedController extends Controller
@@ -19,6 +23,23 @@ class SeedController extends Controller
 
     public function seed_list(){
         return Seed::all();
+    }
+
+    public function add_seed_quantity(Request $request){
+        $data = $request->all();
+        $seed = DB::table('seeds')->where('id', $data['id'])->first();
+        SeedStockIn::create([
+            'quantity_added' => $data['quantity'],
+            'seed_id' => $data['id'],
+            'user_id' => $data['user_id'],
+        ]);  
+
+        $current_seed_quantity = $seed->quantity;
+        $current_seed_quantity += $data['quantity'];
+        $updated_seed_quantity = DB::table('seeds')->where('id', $data['id'])
+                            ->update(['quantity' => $current_seed_quantity]);         
+
+
     }
 
     /**
@@ -40,7 +61,14 @@ class SeedController extends Controller
     public function store(Request $request)
     {
        $seed = Seed::create($this->validateRequest());
+    
+       ProductInventory::create([
+           'seed_id' => $seed->id,
+       ]);
+
        return response()->json(['data' => $seed]);
+
+
     }
 
     /**
@@ -74,7 +102,11 @@ class SeedController extends Controller
      */
     public function update(Request $request, Seed $seed)
     {
-        $seed->update($this->validateRequest());
+
+        $seed->update(request()->validate([
+            'seed_name' => 'required',
+            'variety' => 'required',
+        ]));
     }
 
     /**
@@ -93,10 +125,9 @@ class SeedController extends Controller
         return request()->validate([
             'seed_name' => 'required',
             'variety' => 'required',
-            'unit' => 'required', 
             'quantity' => 'required',
-            'cost' => 'required',
-            'selling_price' => 'required',
         ]);
     }
+
+    
 }

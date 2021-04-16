@@ -45,7 +45,7 @@
                                             <label class="control-label text-right col-md-3">Firstname</label>
                                             <div class="col-md-9">
                                                 <input type="text" class="form-control"  v-model="form.firstname" required>
-                                                <!-- <small class="form-control-feedback"> This is inline help </small>  -->
+                                                <has-error :form="form" field="firstname"></has-error>
                                             </div>
                                         </div>
                                     </div>
@@ -55,7 +55,7 @@
                                             <label class="control-label text-right col-md-3">Lastname</label>
                                             <div class="col-md-9">
                                                 <input type="text" class="form-control"  v-model="form.lastname" required>
-                                                <small class="form-control-feedback"> This is inline help </small> 
+                                                <has-error :form="form" field="lastname"></has-error>
                                             </div>
                                         </div>
                                     </div>
@@ -65,46 +65,25 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label class="control-label text-right col-md-3">Middle Initial</label>
+                                            <label class="control-label text-right col-md-3">Middle Name</label>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control"  v-model="form.middle_initial" required>
-                                                <!-- <small class="form-control-feedback"> This is inline help </small>  -->
+                                                <input type="text" class="form-control"  v-model="form.middlename" required>
+                                                <has-error :form="form" field="middlename"></has-error>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label class="control-label text-right col-md-3">Gender</label>
-                                            <div class="col-md-9">
-                                                <select class="form-control custom-select" v-model="form.gender" required> 
-                                                    <option>Male</option>
-                                                    <option>Female</option>
-                                                </select>
-                                                <small class="form-control-feedback"> Select your gender. </small> </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--/row--> 
-                                <div class="row">
+
                                     <div class="col-md-6">
                                         <div class="form-group row">
                                             <label class="control-label text-right col-md-3">Phone No.</label>
                                             <div class="col-md-9">
                                                 <input type="number" class="form-control"  v-model="form.phone_number" required>
-                                                <!-- <small class="form-control-feedback"> This is inline help </small>  -->
+                                                <has-error :form="form" field="phone_number"></has-error>
                                             </div>
                                         </div>
                                     </div>
-                                    <!--/span-->
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label class="control-label text-right col-md-3">Date of Birth</label>
-                                            <div class="col-md-9">
-                                                <input type="date" class="form-control" placeholder="dd/mm/yyyy" v-model="form.dob" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--/span-->
+                                
+                                    
                                 </div>                            
                                 <h3 class="box-title">Account Details</h3>
                                 <hr class="m-t-0 m-b-40">
@@ -115,15 +94,21 @@
                                             <label class="control-label text-right col-md-3">Username</label>
                                             <div class="col-md-9">
                                                 <input type="text" class="form-control" v-model="form.username" required>
+                                                <has-error :form="form" field="username"></has-error>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label class="control-label text-right col-md-3">Email</label>
+                                            <label class="control-label text-right col-md-3">Role</label>
                                             <div class="col-md-9">
-                                                <input type="email" class="form-control" v-model="form.email" required>
-                                                <!-- <small class="form-control-feedback"> This is inline help </small>  -->
+                                                <select class="form-control custom-select" v-model="form.role" required> 
+                                                    <option value="" disabled>Select Role</option>
+                                                    <option> Admin</option>
+                                                    <option> Staff</option>
+                                                    <option> Gardener</option>
+                                                </select>
+                                                <has-error :form="form" field="role"></has-error>
                                             </div>
                                         </div>
                                     </div>
@@ -131,9 +116,19 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label class="control-label text-right col-md-3">Password</label>
+                                            <label class="control-label text-right col-md-3">Password </label>
                                             <div class="col-md-9">
-                                                <input type="password" class="form-control" v-model="form.password" required>
+                                                <input type="password" class="form-control" v-model="form.password" :class="{ 'is-invalid': form.errors.has('password') }" required>
+                                                <has-error :form="form" field="password"></has-error>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="control-label text-right col-md-3">Password Confirmation</label>
+                                            <div class="col-md-9">
+                                                <input type="password" class="form-control" v-model="form.password_confirmation" :class="{ 'is-invalid': form.errors.has('password') }" required>
+                                                <has-error :form="form" field="password_confirmation"></has-error>
                                             </div>
                                         </div>
                                     </div>
@@ -167,17 +162,18 @@
 
                 staff_list : [],
 
-                form: {
+                form : new Form({
+
                     firstname : '',
                     lastname : '',
-                    middle_initial : '',
-                    gender : '',
-                    dob : '',
+                    middlename : '',
                     phone_number : '',
-                    email: '',
+                    role : '',
                     username : '',
                     password : '',
-                }
+                    password_confirmation : '',
+
+                }),
             }
         },
 
@@ -198,17 +194,7 @@
             },
 
             formSubmit(){
-                axios.post('/api/staff_management/store', {
-                    firstname : this.form.firstname,
-                    lastname : this.form.lastname,
-                    middle_initial : this.form.middle_initial,
-                    dob : this.form.dob,
-                    email: this.form.email,
-                    phone_number : this.form.phone_number,
-                    gender : this.form.gender,
-                    username : this.form.username,
-                    password : this.form.password,
-                })
+                axios.post('/api/staff_management/store', this.form)
                 .then (response => {
                     if (response.status == 200 ){
                         this.form == {};
@@ -217,6 +203,9 @@
                 }).catch (err => {
                     console.log(err);
                 })
+
+                this.staffList();
+                
             },
 
             hideModal(){

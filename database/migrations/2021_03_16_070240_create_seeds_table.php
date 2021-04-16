@@ -17,10 +17,8 @@ class CreateSeedsTable extends Migration
             $table->id();
             $table->string('seed_name');
             $table->string('variety');
-            $table->string('unit');
-            $table->decimal('cost', 5, 2);
-            $table->decimal('selling_price', 5, 2);
-            $table->string('status')->default('1');
+            $table->string('status_transfer')->default('1');
+            $table->string('status_harvest')->default('1');
             $table->mediumInteger('quantity');
             $table->timestamps();
         });

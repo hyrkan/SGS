@@ -92,13 +92,11 @@ class RegisterController extends Controller
         return request()->validate([
             'firstname' => 'required',
             'lastname' => 'required',
-            'gender' => 'required', 
-            'middle_initial' => 'required',
-            'dob' => 'required',
+            'middlename' => 'required',
+            'role' => 'required',
             'phone_number' => 'required',
-            'email' => 'required',
             'username' => 'required',
-            'password' => 'required',
+            'password' => 'required|confirmed',
         ]);
     }
 }

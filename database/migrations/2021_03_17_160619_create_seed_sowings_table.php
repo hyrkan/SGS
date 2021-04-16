@@ -20,6 +20,7 @@ class CreateSeedSowingsTable extends Migration
             $table->integer('quantity');
             $table->string('start');
             $table->string('date_transfer');
+            $table->string('status')->default('0');
             $table->timestamps();
         });
     }

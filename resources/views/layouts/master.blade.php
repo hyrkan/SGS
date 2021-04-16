@@ -15,14 +15,13 @@
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
     <title>SGS</title>
     <!-- Bootstrap Core CSS -->
-    <link href="{{secure_asset('/assets/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{secure_asset('/assets/plugins/calendar/dist/fullcalendar.css')}}" rel="stylesheet" />
+    <link href="{{asset('/assets/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
 
-    <link href="{{secure_asset('/assets/plugins/sweetalert/sweetalert.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('/assets/plugins/sweetalert/sweetalert.css')}}" rel="stylesheet" type="text/css">
     <!-- Custom CSS -->
-    <link href="{{secure_asset('/assets/css/style.css')}}" rel="stylesheet">
+    <link href="{{asset('/assets/css/style.css')}}" rel="stylesheet">
     <!-- You can change the theme colors from here -->
-    <link href="{{secure_asset('/assets/css/colors/default-dark.css')}}" id="theme" rel="stylesheet">
+    <link href="{{asset('/assets/css/colors/default-dark.css')}}" id="theme" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -78,27 +77,23 @@
     <!-- All Jquery -->
     <!-- ============================================================== -->
     
-    <script src="{{asset('/assets/plugins/jquery/jquery.min.js',true)}}"></script>
-    <script src="{{asset('/js/app.js',true)}}"> </script>
+    <script src="{{asset('/assets/plugins/jquery/jquery.min.js')}}"></script>
+    <script src="{{asset('/js/app.js')}}"> </script>
     <!-- Bootstrap tether Core JavaScript -->
 
 
     <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="{{asset('assets/js/jquery.slimscroll.js' ,true)}}"></script>
+    <script src="{{asset('assets/js/jquery.slimscroll.js')}}"></script>
     <!--Wave Effects -->
-    <script src="{{asset('assets/js/waves.js',true)}}"></script>
+    <script src="{{asset('assets/js/waves.js')}}"></script>
     <!--Menu sidebar -->
-    <script src="{{asset('assets/js/sidebarmenu.js',true)}}"></script>
+    <script src="{{asset('assets/js/sidebarmenu.js')}}"></script>
     <!--stickey kit -->
-    <script src="{{asset('assets/plugins/sticky-kit-master/dist/sticky-kit.min.js',true)}}"></script>
-    <script src="{{asset('assets/plugins/sparkline/jquery.sparkline.min.js',true)}}"></script>
-    <script src="{{asset('assets/plugins/calendar/jquery-ui.min.js',true)}}"></script>
-    <script src="{{asset('assets/plugins/moment/moment.js')}}"></script>
-    <script src="{{asset('assets/plugins/calendar/dist/fullcalendar.min.js',true)}}"></script>
-    <script src="{{asset('assets/plugins/calendar/dist/cal-init.js',true)}}"></script>
+    <script src="{{asset('/assets/plugins/sticky-kit-master/dist/sticky-kit.min.js')}}"></script>
+    <script src="{{asset('/assets/plugins/sparkline/jquery.sparkline.min.js')}}"></script>
 
     <!--Custom JavaScript -->
-    <script src="{{asset('assets/js/custom.min.js',true)}}"></script>
+    <script src="{{asset('assets/js/custom.min.js')}}"></script>
     <!-- ============================================================== -->
     <!-- Style switcher -->
     <!-- ============================================================== -->

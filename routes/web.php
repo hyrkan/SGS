@@ -25,6 +25,17 @@ Route::resource('/staff_management', 'RegisterController');
 Route::get('/seed_management', 'SeedController@index');
 Route::get('/seedbed_management', 'SeedbedController@index');
 Route::get('/plot_management', 'PlotController@index');
+Route::get('/fertilizer', 'FertilizerController@index');
+Route::get('/pesticide', 'PesticideController@index');
+Route::get('/task/{id}','TaskController@show');
+Route::get('/product_inventory','ProductInventoryController@index');
+
+
+Route::get('/seed_sowing','SeedSowingController@cultivation');
+Route::get('/seed_plot','SeedPlotController@cultivation');
+
+
+
 Route::get( '/{any}', function(){
     return view( 'home' );
 } )->where('any', '.*');
