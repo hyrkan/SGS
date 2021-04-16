@@ -72,6 +72,7 @@ class SeedSowingController extends Controller
 
     public function today(){
 
+        
         $today = Carbon::today()->format('Y-m-d');
     
 
@@ -83,7 +84,32 @@ class SeedSowingController extends Controller
             ->where('status','=', 0)
             ->get();
         
+        $this->notify($for_transfer);
         return $for_transfer;
+    }
+
+
+    public function notify($for_transfer){
+        $basic  = new \Nexmo\Client\Credentials\Basic('5b7db631', '7z4wLW9HAMsHs0Wk');
+        $client = new \Nexmo\Client($basic);
+
+        
+        $users = DB::table('users')
+                ->where('role' ,'=', 'Gardener')        
+                ->get();
+
+        foreach($users as $user){
+
+            foreach($for_transfer as $seed){
+                $message = $client->message()->send([
+                    'to' => $user->phone_number,
+                    'from' => 'SGS Application',
+                    'text' => 'The'. $seed->seed_name . ' in' . $seed->seedbed_name . ' is ready for transfer'
+                ]);
+            }
+            
+        }
+            
     }
 
     public function validateRequest(){

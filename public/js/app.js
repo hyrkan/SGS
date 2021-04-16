@@ -18485,6 +18485,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     this.fetch_for_transfer_today();
@@ -18497,7 +18500,10 @@ __webpack_require__.r(__webpack_exports__);
       for_harvest_today: [],
       product_list: [],
       status: 'no',
-      plot_name: null
+      plot_name: null,
+      plot_location: null,
+      seedling_name: null,
+      seedling_variety: null
     };
   },
   methods: {
@@ -18523,8 +18529,8 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     showHarvest: function showHarvest(plots) {
-      plot_name = plots.plot_name;
-      plot_location = plots.plot_location, seedling_name = plots.seedling_name, seedling_variety = plots.seedling_variety, seedling_quantity = plots.quantity, plot_id = plots.plot_id, seed_id = plots.seed_id, seed_plot_id = plots.id, date_harvest = plots.date_harvest, $('#check_harvest').modal('show');
+      this.plot_name = plots.plot_name;
+      this.plot_location = plots.location, this.seedling_name = plots.seedling_name, this.seedling_variety = plots.seedling_variety, $('#check_harvest').modal('show');
     },
     fetchProducts: function fetchProducts() {
       var _this3 = this;
@@ -63168,9 +63174,30 @@ var render = function() {
                         _vm._v(" "),
                         _c("ul", { staticClass: "feeds" }, [
                           _c("li", [
-                            _vm._v("Plot "),
+                            _vm._v("Plot Name "),
                             _c("span", { staticClass: "text-muted" }, [
                               _c("h4", [_vm._v(_vm._s(this.plot_name))])
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("li", [
+                            _vm._v("Plot Locations "),
+                            _c("span", { staticClass: "text-muted" }, [
+                              _c("h4", [_vm._v(_vm._s(this.plot_location))])
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("li", [
+                            _vm._v("Seedling Name "),
+                            _c("span", { staticClass: "text-muted" }, [
+                              _c("h4", [_vm._v(_vm._s(this.seedling_name))])
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("li", [
+                            _vm._v("Seedling Variety"),
+                            _c("span", { staticClass: "text-muted" }, [
+                              _c("h4", [_vm._v(_vm._s(this.seedling_variety))])
                             ])
                           ])
                         ])

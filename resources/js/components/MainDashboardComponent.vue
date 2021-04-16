@@ -155,7 +155,10 @@
                                     <div class="card-body">
                                         <h4 class="card-title">For Harvest</h4>
                                         <ul class="feeds">
-                                            <li>Plot <span class="text-muted"><h4>{{this.plot_name}}</h4></span></li>
+                                            <li>Plot Name <span class="text-muted"><h4>{{this.plot_name}}</h4></span></li>
+                                            <li>Plot Locations <span class="text-muted"><h4>{{this.plot_location}}</h4></span></li>
+                                            <li>Seedling Name <span class="text-muted"><h4>{{this.seedling_name}}</h4></span></li>
+                                            <li>Seedling Variety<span class="text-muted"><h4>{{this.seedling_variety}}</h4></span></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -218,7 +221,11 @@
                 
                 status : 'no',
                 plot_name: null,
-               
+                plot_location : null,
+                seedling_name : null,
+                seedling_variety : null,
+
+
                 
             }
         },
@@ -251,16 +258,11 @@
 
 
             showHarvest(plots){
-                plot_name =  plots.plot_name;
-                plot_location = plots.plot_location,
-                seedling_name = plots.seedling_name,
-                seedling_variety = plots.seedling_variety,
-                seedling_quantity = plots.quantity,
-                plot_id = plots.plot_id,
-                seed_id = plots.seed_id,
-                seed_plot_id = plots.id,
-                date_harvest = plots.date_harvest,
                 
+                this.plot_name = plots.plot_name;
+                this.plot_location = plots.location,
+                this.seedling_name = plots.seedling_name,
+                this.seedling_variety = plots.seedling_variety,
                 $('#check_harvest').modal('show');
             },
 
